@@ -12,11 +12,7 @@ f_function = @(x, t) 0;
 
 
 % Pairwise distance function without Statistics Toolbox
-function D = pairwise_dist(x, y)
-    % x: n×1 vector
-    % y: m×1 vector
-    D = abs(x(:) - y(:)');  % result is n×m
-end
+pairwise_dist = @(x, y) abs(x(:) - y(:)'); 
 
 
 % Example parameters
@@ -40,9 +36,9 @@ mean_function = @(x,t) 0;
 
 % Setup
 num_x = 30;
-num_t = 6;
+num_t = 10;
 x_vec = linspace(0, 1, num_x)';
-t_vec = linspace(0, 0.5, num_t)';
+t_vec = linspace(0, 1, num_t)';
 dt = 1/(num_t-1);
 
 [X_grid, T_grid] = meshgrid(x_vec, t_vec);
@@ -151,6 +147,240 @@ sigma_functions{i} = @(x1, t1, x2, t2) prev_sigma(x1, t1, x2, t2) - ...
     (A_j{i} \ [prev_sigma(b, b_time{i}, x2, t2); sigma_j_D_j{i}(x_vec, v_time{i}, x2, t2)]);
 end
 
+
+
+%
+%sample
+%
+
+
+mu_0 = mu_functions{1}(x_input, t_input);
+sigma_0 = sigma_functions{1}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_1 = reshape(f, num_t, num_x);
+
+
+%
+
+mu_0 = mu_functions{2}(x_input, t_input);
+sigma_0 = sigma_functions{2}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_2 = reshape(f, num_t, num_x);
+
+
+
+
+%
+
+mu_0 = mu_functions{3}(x_input, t_input);
+sigma_0 = sigma_functions{3}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_3 = reshape(f, num_t, num_x);
+
+
+
+
+
+%
+
+mu_0 = mu_functions{4}(x_input, t_input);
+sigma_0 = sigma_functions{4}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_4 = reshape(f, num_t, num_x);
+
+
+
+%
+
+mu_0 = mu_functions{5}(x_input, t_input);
+sigma_0 = sigma_functions{5}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_5 = reshape(f, num_t, num_x);
+
+
+
+
+%
+
+mu_0 = mu_functions{6}(x_input, t_input);
+sigma_0 = sigma_functions{6}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_6 = reshape(f, num_t, num_x);
+
+
+
+%
+
+mu_0 = mu_functions{7}(x_input, t_input);
+sigma_0 = sigma_functions{7}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_7 = reshape(f, num_t, num_x);
+
+
+
+%
+
+mu_0 = mu_functions{8}(x_input, t_input);
+sigma_0 = sigma_functions{8}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_8 = reshape(f, num_t, num_x);
+
+
+%
+
+mu_0 = mu_functions{9}(x_input, t_input);
+sigma_0 = sigma_functions{9}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_9 = reshape(f, num_t, num_x);
+
+
+
+%
+
+mu_0 = mu_functions{10}(x_input, t_input);
+sigma_0 = sigma_functions{10}(x_input, t_input, x_input, t_input);
+
+
+% Add a small amount of jitter for numerical stability
+sigma_0 = sigma_0 + 1e-6 * eye(size(sigma_0));
+
+% 4. Generate Samples
+L = chol(sigma_0, 'lower'); % Cholesky decomposition
+z = randn(N, 1);       % Standard normal random variables
+
+
+% Generate the GP sample
+f = mu_0 + L * z;
+
+% 5. Plot the sample
+% Reshape the sampled function values to the grid format for plotting
+f_grid_10 = reshape(f, num_t, num_x);
 
 
 
