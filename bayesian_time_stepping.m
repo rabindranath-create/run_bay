@@ -11,6 +11,12 @@ f_function = @(x, t) 0;
 %mean_function = @(x, t) exp(c * pi^2 * t) .* sin(pi * x);
 
 
+% Pairwise distance function without Statistics Toolbox
+function D = pairwise_dist(x, y)
+    % x: n×1 vector
+    % y: m×1 vector
+    D = abs(x(:) - y(:)');  % result is n×m
+end
 
 
 % Example parameters
@@ -18,13 +24,13 @@ sigma_1 = 3; rho_1 = 0.2;
 sigma_2 = 3; rho_2 = 0.2;
 
 Matern_32 = @(t1, t2) ...
-    sigma_1^2 * (1 + sqrt(3) * pdist2(t1, t2) / rho_1) ...
-    .* exp(-sqrt(3) * pdist2(t1, t2) / rho_1);
+    sigma_1^2 * (1 + sqrt(3) * pairwise_dist(t1, t2) / rho_1) ...
+    .* exp(-sqrt(3) * pairwise_dist(t1, t2) / rho_1);
 
 Matern_52 = @(x1, x2) ...
-    sigma_2^2 * (1 + sqrt(5) * pdist2(x1, x2) / rho_2 + ...
-    5 * pdist2(x1, x2).^2 / (3 * rho_2^2)) ...
-    .* exp(-sqrt(5) * pdist2(x1, x2) / rho_2);
+    sigma_2^2 * (1 + sqrt(5) * pairwise_dist(x1, x2) / rho_2 + ...
+    5 * pairwise_dist(x1, x2).^2 / (3 * rho_2^2)) ...
+    .* exp(-sqrt(5) * pairwise_dist(x1, x2) / rho_2);
 
 product_kernel = @(x1, t1, x2, t2) Matern_52(x1, x2) .* Matern_32(t1, t2);
 
