@@ -293,7 +293,7 @@ f_grid_6 = reshape(f, num_t, num_x);
 
 
 
-%
+%{
 
 mu_0 = mu_functions{7}(x_input, t_input);
 sigma_0 = sigma_functions{7}(x_input, t_input, x_input, t_input);
@@ -382,6 +382,6 @@ f = mu_0 + L * z;
 % Reshape the sampled function values to the grid format for plotting
 f_grid_10 = reshape(f, num_t, num_x);
 
-
+%}
 
 save('results.mat');
