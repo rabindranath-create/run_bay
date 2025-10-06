@@ -36,7 +36,7 @@ mean_function = @(x,t) 0;
 
 % Setup
 num_x = 30;
-num_t = 10;
+num_t = 6;
 x_vec = linspace(0, 1, num_x)';
 t_vec = linspace(0, 1, num_t)';
 dt = 1/(num_t-1);
