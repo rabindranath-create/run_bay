@@ -8,7 +8,7 @@ c=-1;
 %load('myData.mat')
 
 %g_function = @(x) sin(5*pi*x);
-g_function = @(x) x * (1-x);
+g_function = @(x) x .* (1-x);
 
 h_function = @(x, t) 0;
 f_function = @(x, t) 0;
