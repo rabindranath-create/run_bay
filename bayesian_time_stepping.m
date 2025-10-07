@@ -166,7 +166,7 @@ for j = 1:N_t
     L = chol(sigma_mat, 'lower'); 
     z = randn(N, 1);      
     
-    u_sampled{i} = mu_mat + L * z;
+    u_sampled{j} = mu_mat + L * z;
 end
 
 
