@@ -39,7 +39,7 @@ mean_function = @(x,t) exp(- (pi)^2 * t) .* sin(pi * x);
 N_x = 30;
 N_t = 6;
 x_line = linspace(0, 1, N_x)';
-t_line = linspace(0, 1, N_t)';
+t_line = linspace(0, 0.5, N_t)';
 dt = 1/(N_t-1);
 
 [X_grid, T_grid] = meshgrid(x_line, t_line);
