@@ -5,10 +5,9 @@ clc
 
 c=-1;
 
-%load('myData.mat')
+%load('results.mat')
 
 g_function = @(x) sin(pi*x);
-%g_function = @(x) x .* (1-x);
 
 h_function = @(x, t) 0;
 f_function = @(x, t) 0;
@@ -32,14 +31,14 @@ Matern_52 = @(x1, x2) ...
 
 init_kernel = @(x1, t1, x2, t2) Matern_52(x1, x2) .* Matern_32(t1, t2);
 
-mean_function = @(x,t) exp(- (pi)^2 * t) .* sin(pi * x);
-%mean_function = @(x,t) 0;
+%mean_function = @(x,t) exp(- (5* pi)^2 * t) .* sin(pi * x);
+mean_function = @(x,t) 0;
 
 
 N_x = 30;
 N_t = 6;
 x_line = linspace(0, 1, N_x)';
-t_line = linspace(0, 0.5, N_t)';
+t_line = linspace(0, 1, N_t)';
 dt = 1/(N_t-1);
 
 [X_grid, T_grid] = meshgrid(x_line, t_line);
@@ -162,7 +161,7 @@ for j = 1:N_t
     mu_mat = mu_functions{j}(x_input, t_input);
     sigma_mat = sigma_functions{j}(x_input, t_input, x_input, t_input);
     
-   sigma_mat = sigma_mat + 1e-6 * eye(size(sigma_mat));
+    sigma_mat = sigma_mat + 1e-6 * eye(size(sigma_mat));
     
     L = chol(sigma_mat, 'lower'); 
     z = randn(N, 1);      
@@ -174,7 +173,7 @@ end
 the_sampled_u = zeros(N_t, N_x);
 
 for k = 1:N_t
-    temp_func = u_sampled{i};
+    temp_func = u_sampled{k};
     the_sampled_u(k, :) = temp_func(k,:);
 end
 
