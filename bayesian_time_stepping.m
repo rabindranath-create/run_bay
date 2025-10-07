@@ -157,7 +157,7 @@ end
 
 u_sampled = cell(N_t, 1);
 
-for j = 1:Nt
+for j = 1:N_t
     mu_mat = mu_functions{j}(x_input, t_input);
     sigma_mat = sigma_functions{j}(x_input, t_input, x_input, t_input);
     
