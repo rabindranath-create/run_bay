@@ -161,7 +161,7 @@ for j = 1:N_t
     mu_mat = mu_functions{j}(x_input, t_input);
     sigma_mat = sigma_functions{j}(x_input, t_input, x_input, t_input);
     
-   % sigma_sampled = sigma_sampled + 1e-6 * eye(size(sigma_mat));
+   sigma_mat = sigma_mat + 1e-6 * eye(size(sigma_mat));
     
     L = chol(sigma_mat, 'lower'); 
     z = randn(N, 1);      
