@@ -4,7 +4,7 @@ clc
 
 c=-1;
 
-g_function = @(x) sin(pi*x);
+g_function = @(x) sin(5 * pi*x);
 
 h_function = @(x, t) 0;
 f_function = @(x, t) 0;
@@ -30,7 +30,7 @@ Matern_52 = @(x1, x2) ...
 
 product_kernel = @(x1, t1, x2, t2) Matern_52(x1, x2) .* Matern_32(t1, t2);
 
-mean_function = @(x,t) exp(- pi^2 * t) .* sin(pi * x);
+mean_function = @(x, t) exp(c * ( 5 * pi)^2 * t) .* sin(pi * x);
 %mean_function = @(x,t) 0;
 
 
